@@ -42,5 +42,6 @@ for i in lengths:
 
   [saveList(shuffled[i], "avg-" + str(i)) for i in range(1)]
   del shuffled
+  del arr
 
 
