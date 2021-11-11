@@ -1,6 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int *load(char *fileName)
+{
+
+  FILE *f = fopen(fileName, "r");
+  int n;
+  fscanf(f, "%d,", &n);
+  int *v = malloc(sizeof(int) * n);
+  for (int i = 0; i < n; ++i)
+  {
+    fscanf(f, "%d,", &v[i]);
+  }
+  fclose(f);
+
+  return v;
+}
+
 // Merges two subarrays of arr[].
 // First subarray is arr[l..m]
 // Second subarray is arr[m+1..r]
@@ -88,18 +104,20 @@ void printArray(int A[], int size)
 /* Driver code */
 int main()
 {
+  int len = 100000;
+  int *randArray = load("data/100000-avg-0.txt");
 
   // The array containing values to be sorted
-  unsigned int sz = 1000000;
-  unsigned int randArray[sz], i;
-  for (i = 0; i < sz; i++)
-    randArray[i] = rand() % 10000000;
+  // unsigned int sz = 1000000;
+  // unsigned int randArray[sz], i;
+  // for (i = 0; i < sz; i++)
+  //   randArray[i] = rand() % 10000000;
 
-  // Size of the array
-  int arr_size = sizeof(randArray) / sizeof(randArray[0]);
+  // // Size of the array
+  // int arr_size = sizeof(randArray) / sizeof(randArray[0]);
 
-  mergeSort(randArray, 0, arr_size - 1);
+  mergeSort(randArray, 0, len - 1);
 
-  printArray(randArray, arr_size);
+  printArray(randArray, len);
   // Function call for the Radix Sort Algorithm
 }

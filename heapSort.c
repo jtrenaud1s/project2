@@ -2,6 +2,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int* load(char *fileName)
+{
+
+  FILE *f = fopen(fileName, "r");
+  int n;
+  fscanf(f, "%d,", &n);
+  int *v = malloc(sizeof(int) * n);
+  for (int i = 0; i < n; ++i)
+  {
+    fscanf(f, "%d,", &v[i]);
+  }
+  fclose(f);
+
+  return v;
+}
+
 void swap(int *a, int *b)
 {
   int tmp = *a;
@@ -59,17 +75,20 @@ void printArray(int arr[], int n)
 /* Driver code */
 int main()
 {
+  printf("running");
+  int len = 100000;
+  int *randArray = load("data/100000-avg-0.txt");
 
   // The array containing values to be sorted
-  int sz = 1000000;
-  int randArray[sz], i;
-  for (i = 0; i < sz; i++)
-    randArray[i] = rand() % 10000000;
+  // int sz = 1000000;
+  // int randArray[sz], i;
+  // for (i = 0; i < sz; i++)
+  //   randArray[i] = rand() % 10000000;
 
-  // Size of the array
-  int arr_size = sizeof(randArray) / sizeof(randArray[0]);
+  // // Size of the array
+  // int arr_size = sizeof(randArray) / sizeof(randArray[0]);
 
-  heapSort(randArray, arr_size);
+  heapSort(randArray, len);
 
-  printArray(randArray, arr_size);
+  printArray(randArray, len);
 }
