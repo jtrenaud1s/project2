@@ -10,7 +10,7 @@ def saveList(listOfNumbers, order):
 
   content = ','.join([str(i) for i in listOfNumbers])
 
-  with open(filename, 'w') as fp:
+  with open("data/" + filename, 'w') as fp:
     fp.write(content)
 
 
