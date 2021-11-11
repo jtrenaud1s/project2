@@ -1,4 +1,5 @@
 import numpy as np
+import os
 
 lengths = [100000, 1000000, 10000000, 100000000]
 
@@ -10,7 +11,9 @@ def saveList(listOfNumbers, order):
 
   content = ','.join([str(i) for i in listOfNumbers])
 
-  with open("data/" + filename, 'w') as fp:
+  if not os.path.exists("data"): os.mkdir("data") 
+
+  with open("data/" + filename, 'w+') as fp:
     fp.write(content)
 
 
