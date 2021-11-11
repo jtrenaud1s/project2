@@ -1,6 +1,6 @@
 import numpy as np
 
-lengths = [100, 1000, 10000, 100000, 1000000, 10000000, 100000000]
+lengths = [100000, 1000000, 10000000, 100000000]
 
 def saveList(listOfNumbers, order):
   length = len(listOfNumbers)
@@ -24,10 +24,10 @@ for i in lengths:
   print("Generating Worst Case Variation")
   worst = list(arr[::-1])
 
-  print("Generating 3 Average Case Variations")
+  print("Generating Average Case Variation")
   shuffled = []
 
-  for i in range(3):
+  for i in range(1):
     np.random.shuffle(arr)
     shuffled.append(list(arr))
 
@@ -37,7 +37,7 @@ for i in lengths:
   saveList(worst, "worst")
   del worst
 
-  [saveList(shuffled[i], "avg-" + str(i)) for i in range(3)]
+  [saveList(shuffled[i], "avg-" + str(i)) for i in range(1)]
   del shuffled
 
 
