@@ -24,14 +24,6 @@ void run(void (*f)(int[], int), char l[], char type[])
   int len = 0;
   int *randArray = load(fileName, &len);
 
-  // The array containing values to be sorted
-  // int sz = 1000000;
-  // int randArray[sz], i;
-  // for (i = 0; i < sz; i++)
-  //   randArray[i] = rand() % 10000000;
-
-  // // Size of the array
-  // int arr_size = sizeof(randArray) / sizeof(randArray[0]);
   printf("Starting HeapSort on %s numbers, %s case\n", l, type);
 
   clock_t start = clock();
