@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 // Merges two subarrays of arr[].
 // First subarray is arr[l..m]
 // Second subarray is arr[m+1..r]
@@ -8,7 +10,8 @@ void merge(int arr[], int l, int m, int r)
   int n2 = r - m;
 
   /* create temp arrays */
-  int L[n1], R[n2];
+  int *L = malloc(n1 * sizeof(n1));
+  int *R = malloc(n2 * sizeof(n2));
 
   /* Copy data to temp arrays L[] and R[] */
   for (i = 0; i < n1; i++)
@@ -43,7 +46,7 @@ void merge(int arr[], int l, int m, int r)
     i++;
     k++;
   }
-
+  free(L);
   /* Copy the remaining elements of R[], if there
     are any */
   while (j < n2)
@@ -52,6 +55,7 @@ void merge(int arr[], int l, int m, int r)
     j++;
     k++;
   }
+  free(R);
 }
 
 /* l is for left index and r is right index of the
