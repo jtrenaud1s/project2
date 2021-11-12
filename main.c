@@ -24,8 +24,6 @@ void run(void (*f)(int[], int), char l[], char type[])
   int len = 0;
   int *randArray = load(fileName, &len);
 
-  printf("Starting HeapSort on %s numbers, %s case\n", l, type);
-
   clock_t start = clock();
   (*f)(randArray, len);
   clock_t stop = clock();
@@ -41,28 +39,46 @@ int main(int argc, char **argv)
   if (argc == 4)
   {
     printf("%s, %s, %s\n", argv[1], argv[2], argv[3]);
-    if (strcmp("heapSort", argv[1]) != 0)
+    if (strcmp("heap", argv[1]) == 0)
+    {
+      printf("Starting Heap Sort on %s numbers, %s case\n", argv[2], argv[3]);
       run(heapSort, argv[2], argv[3]);
-    else if (strcmp("insertionSort", argv[1]) != 0)
+    }
+    else if (strcmp("insertion", argv[1]) == 0)
+    {
+      printf("Starting Insertion Sort on %s numbers, %s case\n", argv[2], argv[3]);
       run(insertionSort, argv[2], argv[3]);
-    else if (strcmp("mergeSort", argv[1]) != 0)
+    }
+    else if (strcmp("merge", argv[1]) == 0)
+    {
+      printf("Starting Merge Sort on %s numbers, %s case\n", argv[2], argv[3]);
       run(mergeSort, argv[2], argv[3]);
-    else if (strcmp("quickSort", argv[1]) != 0)
+    }
+    else if (strcmp("quick", argv[1]) == 0)
+    {
+      printf("Starting Quick Sort on %s numbers, %s case\n", argv[2], argv[3]);
       run(quickSort, argv[2], argv[3]);
-    else if (strcmp("radixSort", argv[1]) != 0)
+    }
+    else if (strcmp("radix", argv[1]) == 0)
+    {
+      printf("Starting Radix Sort on %s numbers, %s case\n", argv[2], argv[3]);
       run(radixSort, argv[2], argv[3]);
-    else if (strcmp("selectionSort", argv[1]) != 0)
+    }
+    else if (strcmp("selection", argv[1]) == 0)
+    {
+      printf("Starting Selection Sort on %s numbers, %s case\n", argv[2], argv[3]);
       run(selectionSort, argv[2], argv[3]);
+    }
     else
     {
-      printf("Available Algorithms: heapSort, insertionSort, mergeSort, quickSort, radixSort, selectionSort");
+      printf("Available Algorithms: heap, insertion, merge, quick, radix, selection");
     }
   }
   else
   {
     printf("%d args expected, %d given\n\n", 3, argc - 1);
     printf("Usage: ./sort <algorithm> <length> <case>\n");
-    printf("Available Algorithms: heapSort, insertionSort, mergeSort, quickSort, radixSort, selectionSort\n\n");
+    printf("Available Algorithms: heap, insertion, merge, quick, radix, selection");
 
     return -1;
   }
