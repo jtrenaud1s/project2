@@ -1,28 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-int *load(char *fileName)
-{
-
-  FILE *f = fopen(fileName, "r");
-  int n;
-  fscanf(f, "%d,", &n);
-  int *v = malloc(sizeof(int) * n);
-  for (int i = 0; i < n; ++i)
-  {
-    fscanf(f, "%d,", &v[i]);
-  }
-  fclose(f);
-
-  return v;
-}
-
-void swap(int *xp, int *yp)
-{
-  int temp = *xp;
-  *xp = *yp;
-  *yp = temp;
-}
+#include "util.h"
 
 void selectionSort(int arr[], int n)
 {
@@ -40,35 +16,4 @@ void selectionSort(int arr[], int n)
     // Swap the found minimum element with the first element
     swap(&arr[min_idx], &arr[i]);
   }
-}
-
-/* Function to print an array */
-void printArray(int arr[], int size)
-{
-  int i;
-  for (i = 0; i < size; i++)
-    printf("%d ", arr[i]);
-  printf("\n");
-}
-
-/* Driver code */
-int main()
-{
-  int len = 100000;
-  int *randArray = load("data/100000-avg-0.txt");
-
-  // The array containing values to be sorted
-  // int sz = 10000;
-  // int randArray[sz], i;
-  // for (i = 0; i < sz; i++)
-  //   randArray[i] = rand() % 10000;
-
-  // // Size of the array
-  // int arr_size = sizeof(randArray) / sizeof(randArray[0]);
-
-  selectionSort(randArray, len);
-
-  printArray(randArray, len);
-
-  // Function call for the Radix Sort Algorithm
 }

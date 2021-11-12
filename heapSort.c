@@ -1,29 +1,4 @@
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int* load(char *fileName)
-{
-
-  FILE *f = fopen(fileName, "r");
-  int n;
-  fscanf(f, "%d,", &n);
-  int *v = malloc(sizeof(int) * n);
-  for (int i = 0; i < n; ++i)
-  {
-    fscanf(f, "%d,", &v[i]);
-  }
-  fclose(f);
-
-  return v;
-}
-
-void swap(int *a, int *b)
-{
-  int tmp = *a;
-  *a = *b;
-  *b = tmp;
-}
+#include "util.h"
 
 void heapify(int arr[], int n, int i)
 {
@@ -59,36 +34,7 @@ void heapSort(int arr[], int n)
   for (int i = n - 1; i >= 0; i--)
   {
     swap(&arr[0], &arr[i]); //Current root moved to the end
-
-    heapify(arr, i, 0); //calling max heapify on the heap reduced
+    heapify(arr, i, 0);     //calling max heapify on the heap reduced
   }
 }
 
-//print size of array n using utility function
-void printArray(int arr[], int n)
-{
-  for (int i = 0; i < n; ++i)
-    printf("%d ", arr[i]);
-  printf("\n");
-}
-
-/* Driver code */
-int main()
-{
-  printf("running");
-  int len = 100000;
-  int *randArray = load("data/100000-avg-0.txt");
-
-  // The array containing values to be sorted
-  // int sz = 1000000;
-  // int randArray[sz], i;
-  // for (i = 0; i < sz; i++)
-  //   randArray[i] = rand() % 10000000;
-
-  // // Size of the array
-  // int arr_size = sizeof(randArray) / sizeof(randArray[0]);
-
-  heapSort(randArray, len);
-
-  printArray(randArray, len);
-}

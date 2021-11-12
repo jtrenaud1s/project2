@@ -1,22 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-int *load(char *fileName)
-{
-
-  FILE *f = fopen(fileName, "r");
-  int n;
-  fscanf(f, "%d,", &n);
-  int *v = malloc(sizeof(int) * n);
-  for (int i = 0; i < n; ++i)
-  {
-    fscanf(f, "%d,", &v[i]);
-  }
-  fclose(f);
-
-  return v;
-}
-
 // Merges two subarrays of arr[].
 // First subarray is arr[l..m]
 // Second subarray is arr[m+1..r]
@@ -75,7 +56,7 @@ void merge(int arr[], int l, int m, int r)
 
 /* l is for left index and r is right index of the
 sub-array of arr to be sorted */
-void mergeSort(int arr[], int l, int r)
+void doMergeSort(int arr[], int l, int r)
 {
   if (l < r)
   {
@@ -84,40 +65,14 @@ void mergeSort(int arr[], int l, int r)
     int m = l + (r - l) / 2;
 
     // Sort first and second halves
-    mergeSort(arr, l, m);
-    mergeSort(arr, m + 1, r);
+    doMergeSort(arr, l, m);
+    doMergeSort(arr, m + 1, r);
 
     merge(arr, l, m, r);
   }
 }
 
-/* UTILITY FUNCTIONS */
-/* Function to print an array */
-void printArray(int A[], int size)
+void mergeSort(int arr[], int len)
 {
-  int i;
-  for (i = 0; i < size; i++)
-    printf("%d ", A[i]);
-  printf("\n");
-}
-
-/* Driver code */
-int main()
-{
-  int len = 100000;
-  int *randArray = load("data/100000-avg-0.txt");
-
-  // The array containing values to be sorted
-  // unsigned int sz = 1000000;
-  // unsigned int randArray[sz], i;
-  // for (i = 0; i < sz; i++)
-  //   randArray[i] = rand() % 10000000;
-
-  // // Size of the array
-  // int arr_size = sizeof(randArray) / sizeof(randArray[0]);
-
-  mergeSort(randArray, 0, len - 1);
-
-  printArray(randArray, len);
-  // Function call for the Radix Sort Algorithm
+  doMergeSort(arr, 0, len - 1);
 }

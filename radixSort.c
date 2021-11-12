@@ -1,41 +1,4 @@
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int *load(char *fileName)
-{
-
-   FILE *f = fopen(fileName, "r");
-   int n;
-   fscanf(f, "%d,", &n);
-   int *v = malloc(sizeof(int) * n);
-   for (int i = 0; i < n; ++i)
-   {
-      fscanf(f, "%d,", &v[i]);
-   }
-   fclose(f);
-
-   return v;
-}
-
-// Print an array
-void printArray(int array[], int size)
-{
-   for (int i = 0; i < size; ++i)
-   {
-      printf("%d  ", array[i]);
-   }
-   printf("\n");
-}
-
-int getMax(int array[], int n)
-{
-   int max = array[0];
-   for (int i = 1; i < n; i++)
-      if (array[i] > max)
-         max = array[i];
-   return max;
-}
+#include "util.h"
 
 // Using counting sort to sort the elements in the basis of significant places
 void countingSort(int array[], int size, int place)
@@ -73,7 +36,7 @@ void countingSort(int array[], int size, int place)
 }
 
 // Main function to implement radix sort
-void radixsort(int array[], int size)
+void radixSort(int array[], int size)
 {
    // Get maximum element
    int max = getMax(array, size);
@@ -83,23 +46,4 @@ void radixsort(int array[], int size)
       countingSort(array, size, place);
 
    printArray(array, size);
-}
-
-int main()
-{
-   int len = 100000;
-   int *randArray = load("data/100000-avg-0.txt");
-   // The array containing values to be sorted
-   // unsigned int sz = 1000000;
-   // unsigned int randArray[sz], i;
-   // for (i = 0; i < sz; i++)
-   //    randArray[i] = rand() % 10000000;
-
-   // // Size of the array
-    int n = sizeof(randArray) / sizeof(n);
-
-   // Function call for the Radix Sort Algorithm
-   printf("test");
-   radixsort(randArray, len);
-   return 1;
 }

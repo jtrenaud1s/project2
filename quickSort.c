@@ -1,34 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-int *load(char *fileName)
-{
-
-  FILE *f = fopen(fileName, "r");
-  int n;
-  fscanf(f, "%d,", &n);
-  int *v = malloc(sizeof(int) * n);
-  for (int i = 0; i < n; ++i)
-  {
-    fscanf(f, "%d,", &v[i]);
-  }
-  fclose(f);
-
-  return v;
-}
-
-// function to swap elements
-void swap(int *a, int *b)
-{
-  int t = *a;
-  *a = *b;
-  *b = t;
-}
+#include "util.h"
 
 // function to find the partition position
 int partition(int array[], int low, int high)
 {
-
   // select the rightmost element as pivot
   int pivot = array[high];
 
@@ -41,7 +15,6 @@ int partition(int array[], int low, int high)
   {
     if (array[j] <= pivot)
     {
-
       // if element smaller than pivot is found
       // swap it with the greater element pointed by i
       i++;
@@ -58,50 +31,23 @@ int partition(int array[], int low, int high)
   return (i + 1);
 }
 
-void quickSort(int array[], int low, int high)
+void doQuickSort(int array[], int low, int high)
 {
   if (low < high)
   {
-
     // find the pivot element such that
     // elements smaller than pivot are on left of pivot
     // elements greater than pivot are on right of pivot
     int pi = partition(array, low, high);
 
     // recursive call on the left of pivot
-    quickSort(array, low, pi - 1);
+    doQuickSort(array, low, pi - 1);
 
     // recursive call on the right of pivot
-    quickSort(array, pi + 1, high);
+    doQuickSort(array, pi + 1, high);
   }
 }
 
-// function to print array elements
-void printArray(int array[], int size)
-{
-  for (int i = 0; i < size; ++i)
-  {
-    printf("%d  ", array[i]);
-  }
-  printf("\n");
-}
-
-/* Driver code */
-int main()
-{
-  int len = 100000;
-  int *randArray = load("data/100000-avg-0.txt");
-
-  // The array containing values to be sorted
-  // int sz = 1000000;
-  // int randArray[sz], i;
-  // for (i = 0; i < sz; i++)
-  //   randArray[i] = rand() % 10000000;
-
-  // Size of the array
-  // int arr_size = sizeof(randArray) / sizeof(randArray[0]);
-
-  quickSort(randArray, 0, len - 1);
-
-  printArray(randArray, len);
+void quickSort(int arr[], int len) {
+  doQuickSort(arr, 0, len - 1);
 }
