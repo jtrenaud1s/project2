@@ -2,7 +2,8 @@
 
 void heapify(int arr[], int n, int i)
 {
-  int max = i; //Initialize max as root
+  //Initialize max as root
+  int max = i; 
   int leftChild = 2 * i + 1;
   int rightChild = 2 * i + 2;
 

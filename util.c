@@ -8,6 +8,7 @@ void printArray(int arr[], int n)
   printf("\n");
 }
 
+// Swaps two values in memory
 void swap(int *a, int *b)
 {
   int tmp = *a;
@@ -15,6 +16,7 @@ void swap(int *a, int *b)
   *b = tmp;
 }
 
+// Finds the max value of an array given the array and length
 int getMax(int array[], int n)
 {
   int max = array[0];

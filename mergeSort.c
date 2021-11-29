@@ -46,7 +46,9 @@ void merge(int arr[], int l, int m, int r)
     i++;
     k++;
   }
+  // L[] is no longer needed, free the memory
   free(L);
+
   /* Copy the remaining elements of R[], if there
     are any */
   while (j < n2)
@@ -55,6 +57,7 @@ void merge(int arr[], int l, int m, int r)
     j++;
     k++;
   }
+  // R[] is no longer needed, free the memory
   free(R);
 }
 
@@ -76,6 +79,7 @@ void doMergeSort(int arr[], int l, int r)
   }
 }
 
+// Compatibility function for the main driver code to convert an array and a length to an array, a start point, and an endpoint
 void mergeSort(int arr[], int len)
 {
   doMergeSort(arr, 0, len - 1);

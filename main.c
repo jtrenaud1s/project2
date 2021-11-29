@@ -10,10 +10,13 @@
 #include "radixSort.h"
 #include "selectionSort.h"
 
+// Run a function (algorithm) given the length of the array to run and the sorting order to load
 void run(void (*f)(int[], int), char l[], char type[])
 {
+  // all data files are in data/
   char fileName[100] = "data/";
 
+  // concatenate the length and sorting order to the filename with extension
   strcat(fileName, l);
   strcat(fileName, "-");
   strcat(fileName, type);
@@ -21,26 +24,34 @@ void run(void (*f)(int[], int), char l[], char type[])
 
   printf("Loading file: %s\n", fileName);
 
+  // Load the array from the file
   int len = 0;
   int *randArray = load(fileName, &len);
 
+  // Run the selected algorithm with a timer
   clock_t start = clock();
   (*f)(randArray, len);
   clock_t stop = clock();
 
   double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
   printf("Time elapsed in ms: %f\n", elapsed);
+  
+  // free the memory used by the array
   free(randArray);
 }
 
 /* Driver code */
 int main(int argc, char **argv)
 {
+
+  // If 3 arguments were provided (command included first)
   if (argc == 4)
   {
+    // Second argument is the algorithm to run
     if (strcmp("heap", argv[1]) == 0)
     {
       printf("Starting Heap Sort on %s numbers, %s case scenario\n", argv[2], argv[3]);
+      // third and fourth are array length and sorting order
       run(heapSort, argv[2], argv[3]);
     }
     else if (strcmp("insertion", argv[1]) == 0)
@@ -70,11 +81,13 @@ int main(int argc, char **argv)
     }
     else
     {
+      // Invalid algorithm selection or none made
       printf("Available Algorithms: heap, insertion, merge, quick, radix, selection");
     }
   }
   else
   {
+    // How to use the program
     printf("%d args expected, %d given\n\n", 3, argc - 1);
     printf("Usage: ./sort <algorithm> <length> <case>\n");
     printf("Available Algorithms: heap, insertion, merge, quick, radix, selection");
